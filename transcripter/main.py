@@ -156,9 +156,9 @@ def chat_ia(transcricao):
         # console.print(f"[bold blue]IA:[/bold blue] {resposta.content if hasattr(resposta, 'content') else resposta}")
 
 def analise_transcricoes():
+    transcricoes = db.all()
     while True:
         console.clear()
-        transcricoes = db.all()
         if not transcricoes:
             console.print("[yellow]Nenhuma transcrição encontrada.[/yellow]")
             input("Pressione ENTER para voltar.")
@@ -198,6 +198,7 @@ def analise_transcricoes():
             input("Pressione ENTER para voltar.")
         elif acao.startswith("3."):
             db.remove(doc_ids=[item.doc_id])
+            transcricoes = db.all()
             console.print("[red]Transcrição deletada![/red]")
             input("Pressione ENTER para voltar.")
 
